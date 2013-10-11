@@ -1,0 +1,20 @@
+[general]
+name=Copy_Coords
+description=Capture coordinates from QGIS in one click for immediate pasting into a spreadsheet, as simple as it gets.
+category=Vector
+version=0.0.1
+qgisMinimumVersion=2.0
+
+author=Maxim Dubinin (NextGIS)
+email=info@nextgis.org
+
+icon=icons/icon.png
+
+tags=coords,copy coords
+
+homepage=https://github.com/nextgis/copy_coords
+tracker=https://github.com/nextgis/copy_coords/issues
+repository=https://github.com/nextgis/copy_coords
+
+experimental=True
+deprecated=False
