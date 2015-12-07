@@ -49,11 +49,18 @@ class CopyCoordstool(QgsMapTool):
     self.canvas.setCursor(self.cursor)
 
   def canvasReleaseEvent(self, event):
+  
+    crsSrc = self.canvas.mapRenderer().destinationCrs()
+    crsWGS = QgsCoordinateReferenceSystem(4326)
 
     QApplication.setOverrideCursor(Qt.WaitCursor)
     x = event.pos().x()
     y = event.pos().y()
     point = self.canvas.getCoordinateTransform().toMapCoordinates(x, y)
+    #If Shift is pressed, convert coords to EPSG:4326
+    if event.modifiers() == Qt.ShiftModifier:
+        xform = QgsCoordinateTransform(crsSrc, crsWGS)
+        point = xform.transform(QgsPoint(point.x(),point.y()))
     QApplication.restoreOverrideCursor()
 
     xx = str(point.x()) 
