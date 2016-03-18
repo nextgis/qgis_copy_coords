@@ -1,6 +1,10 @@
 copy_coords
 ==========
 
-This is a plugin for QGIS 2.0
+QGIS plugin to capture coordinates from QGIS in one click for immediate pasting into a spreadsheet, as simple as it gets. Use SHIFT to copy coordinates in EPSG:4326 (WGS 1984) independently from what your current CRS is.
 
-Capture coordinates from QGIS in one click for immediate pasting into a spreadsheet, as simple as it gets. Use SHIFT to copy coordinates in EPSG:4326 (WGS 1984) independently from what your current CRS is.
+Commercial support
+----------
+Need to fix a bug or add a feature to Copy_Coords for QGIS? We provide custom development and support for this software. [Contact us](http://nextgis.ru/en/contact/) to discuss options!
+
+[![http://nextgis.com](http://nextgis.ru/img/nextgis.png)](http://nextgis.com)
