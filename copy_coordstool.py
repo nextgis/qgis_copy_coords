@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#******************************************************************************
+# ******************************************************************************
 #
 # Copy_Coords
 # ---------------------------------------------------------
@@ -22,50 +22,51 @@
 # to the Free Software Foundation, 51 Franklin Street, Suite 500 Boston,
 # MA 02110-1335 USA.
 #
-#******************************************************************************
+# ******************************************************************************
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import QApplication, QMessageBox
 
 from qgis.core import *
 from qgis.gui import *
 
-import resources
-import os
-import tempfile
-import platform
+# initialize resources (icons) from resources.py
+from . import resources
+
 
 class CopyCoordstool(QgsMapTool):
-  def __init__(self, iface):
-    QgsMapTool.__init__(self, iface.mapCanvas())
+    def __init__(self, iface):
+        QgsMapTool.__init__(self, iface.mapCanvas())
 
-    self.canvas = iface.mapCanvas()
-    #self.emitPoint = QgsMapToolEmitPoint(self.canvas)
-    self.iface = iface
+        self.canvas = iface.mapCanvas()
+        # self.emitPoint = QgsMapToolEmitPoint(self.canvas)
+        self.iface = iface
 
-    self.cursor = QCursor(QPixmap(":/icons/cursor.png"), 1, 1)
+        self.cursor = QCursor(QPixmap(":/icons/cursor.png"), 1, 1)
 
-  def activate(self):
-    self.canvas.setCursor(self.cursor)
+    def activate(self):
+        self.canvas.setCursor(self.cursor)
 
-  def canvasReleaseEvent(self, event):
-  
-    crsSrc = self.canvas.mapRenderer().destinationCrs()
-    crsWGS = QgsCoordinateReferenceSystem(4326)
+    def canvasReleaseEvent(self, event):
+        crsSrc = self.canvas.mapSettings().destinationCrs()
+        crsWGS = QgsCoordinateReferenceSystem('EPSG:4326')
 
-    QApplication.setOverrideCursor(Qt.WaitCursor)
-    x = event.pos().x()
-    y = event.pos().y()
-    point = self.canvas.getCoordinateTransform().toMapCoordinates(x, y)
-    #If Shift is pressed, convert coords to EPSG:4326
-    if event.modifiers() == Qt.ShiftModifier:
-        xform = QgsCoordinateTransform(crsSrc, crsWGS)
-        point = xform.transform(QgsPoint(point.x(),point.y()))
-    QApplication.restoreOverrideCursor()
+        QApplication.setOverrideCursor(Qt.WaitCursor)
+        x = event.pos().x()
+        y = event.pos().y()
+        point = self.canvas.getCoordinateTransform().toMapCoordinates(x, y)
+        # If Shift is pressed, convert coords to EPSG:4326
+        if event.modifiers() == Qt.ShiftModifier:
+            f = QgsGeometry.fromPointXY(QgsPointXY(point.x(), point.y()))
+            xform = QgsCoordinateTransform(crsSrc, crsWGS, QgsProject.instance())
+            f.transform(xform)
+            point = f.asPoint()
+        QApplication.restoreOverrideCursor()
 
-    xx = str(point.x()) 
-    yy = str(point.y())
+        xx = str(point.x())
+        yy = str(point.y())
 
-    #QMessageBox.warning(self.iface.mainWindow(),xx,yy)
-    clipboard = QApplication.clipboard()
-    clipboard.setText(str(xx)+"\t"+str(yy))
+        # QMessageBox.warning(self.iface.mainWindow(), 'Coordinates of a mouse click', f'{xx}\t{yy}')
+        clipboard = QApplication.clipboard()
+        clipboard.setText(f'{xx}\t{yy}')

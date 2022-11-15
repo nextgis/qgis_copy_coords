@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#******************************************************************************
+# ******************************************************************************
 #
 # Copy_Coords
 # ---------------------------------------------------------
@@ -22,8 +22,8 @@
 # to the Free Software Foundation, 51 Franklin Street, Suite 500 Boston,
 # MA 02110-1335 USA.
 #
-#******************************************************************************
+# ******************************************************************************
 
 def classFactory(iface):
-  from copy_coords import Copy_Coords
-  return Copy_Coords(iface)
+    from .qgis_copy_coords import Copy_Coords
+    return Copy_Coords(iface)
