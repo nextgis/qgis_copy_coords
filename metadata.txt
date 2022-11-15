@@ -8,9 +8,9 @@ qgisMinimumVersion=3.0
 qgisMaximumVersion=3.99
 
 author=NextGIS
-email=info@nextgis.org
+email=info@nextgis.com
 
-icon=icons/icon.png
+icon=icons/cursor.png
 changelog=
       0.2
         * QGIS 3 port
@@ -19,9 +19,9 @@ changelog=
 
 tags=coords,copy coords
 
-homepage=https://github.com/nextgis/copy_coords
-tracker=https://github.com/nextgis/copy_coords/issues
-repository=https://github.com/nextgis/copy_coords
+homepage=https://nextgis.com
+tracker=https://github.com/nextgis/qgis_copy_coords/issues
+repository=https://github.com/nextgis/qgis_copy_coords
 
 experimental=False
 deprecated=False
