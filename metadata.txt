@@ -1,7 +1,7 @@
 [general]
 name=Copy_Coords
-description=Capture coordinates from QGIS in one click for immediate pasting into a spreadsheet, as simple as it gets. 
-about=Capture coordinates from QGIS in one click for immediate pasting into a spreadsheet, as simple as it gets. Use SHIFT to copy coordinates in EPSG:4326 (WGS 1984) independently from what your current CRS is.
+description=Capture map coordinates in ONE click to paste them into a spreadsheet
+about=Capture coordinates from the map in exactly one click for immediate pasting into a spreadsheet, as simple as it gets. Use SHIFT to copy coordinates in EPSG:4326 (WGS 1984) independently from what your current CRS is. Developed by NextGIS. Any feedback is welcome at https://nextgis.com/contact
 category=Vector
 version=0.2
 qgisMinimumVersion=3.0
