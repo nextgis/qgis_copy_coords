@@ -29,6 +29,7 @@ from qgis.core import *
 from PyQt5.QtWidgets import QMessageBox, QAction
 
 from .copy_coordstool import CopyCoordstool
+from . import aboutdialog
 
 # initialize resources (icons) from resources.py
 from . import resources
@@ -41,6 +42,7 @@ class Copy_Coords:
         # save reference to QGIS interface
         self.iface = iface
         self.qgsVersion = unicode(Qgis.versionInt())
+        self.helpIsActive = False
 
     def initGui(self):
         """Initialize graphic user interface"""
@@ -50,15 +52,19 @@ class Copy_Coords:
         self.action.setIcon(QIcon(":/icons/cursor.png"))
         self.action.setWhatsThis("Copy coordinates")
         self.action.setStatusTip("Copy coordinates for pasting somewhere else")
+        self.actionAbout = QAction('About', self.iface.mainWindow())
+        self.actionAbout.setWhatsThis('About Copy Coords')
 
         # add plugin menu to Vector toolbar
         self.iface.addPluginToMenu("Copy_Coords", self.action)
+        self.iface.addPluginToMenu("Copy_Coords", self.actionAbout)
 
         # add icon to new menu item in Vector toolbar
         self.iface.addToolBarIcon(self.action)
 
         # connect action to the run method
         self.action.triggered.connect(self.run)
+        self.actionAbout.triggered.connect(self.about)
 
         # prepare map tool
         self.mapTool = CopyCoordstool(self.iface)
@@ -80,3 +86,11 @@ class Copy_Coords:
         # create a string and show it
 
         self.iface.mapCanvas().setMapTool(self.mapTool)
+
+    def about(self):
+        if not self.helpIsActive:
+            self.dlg = aboutdialog.AboutDialog('copy_coords')
+            self.dlg.show()
+            self.helpIsActive = True
+        else:
+            self.dlg.show()
