@@ -15,7 +15,6 @@ class AboutDialog(QDialog, FORM_CLASS):
         super().__init__()
         self.setupUi(self)
         self.metadata_name = metadata_name
-        # self.btnHelp = self.buttonBox.button(QDialogButtonBox.Help)
         self.plugin_name.setText(f'<p>{qgis.utils.pluginMetadata(f"{self.metadata_name}", "name")}</p>')
         font = QFont("MS Shell Dlg 2", 16)
         font.setBold(True)
@@ -25,9 +24,6 @@ class AboutDialog(QDialog, FORM_CLASS):
         doc.setHtml(self.getAboutText())
         self.textBrowser.setDocument(doc)
         self.textBrowser.setOpenExternalLinks(True)
-        # self.setWindowTitle(f'About {qgis.utils.pluginMetadata(f"{self.metadata_name}", "name")}')
-
-        # self.buttonBox.helpRequested.connect(self.openHelp)
 
 
     def reject(self):
