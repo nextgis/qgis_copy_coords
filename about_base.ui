@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>XXX</string>
+   <string>About {plugin_name}</string>
   </property>
   <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
    <item row="2" column="0" colspan="2">

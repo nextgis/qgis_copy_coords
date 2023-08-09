@@ -22,6 +22,8 @@ tags=coords,copy coords
 homepage=https://nextgis.com
 tracker=https://github.com/nextgis/qgis_copy_coords/issues
 repository=https://github.com/nextgis/qgis_copy_coords
+youtube_ru=https://youtu.be/74mxkqoHXIw
+youtube_en=https://youtu.be/ISH2bB6quB4
 
 experimental=False
 deprecated=False

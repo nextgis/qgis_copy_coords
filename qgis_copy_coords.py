@@ -88,9 +88,6 @@ class Copy_Coords:
         self.iface.mapCanvas().setMapTool(self.mapTool)
 
     def about(self):
-        if not self.helpIsActive:
-            self.dlg = aboutdialog.AboutDialog('copy_coords')
-            self.dlg.show()
-            self.helpIsActive = True
-        else:
-            self.dlg.show()
+        dlg = aboutdialog.AboutDialog('copy_coords')
+        dlg.exec_()
+
