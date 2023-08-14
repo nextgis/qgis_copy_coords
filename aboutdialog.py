@@ -14,22 +14,24 @@ class AboutDialog(QDialog, FORM_CLASS):
     def __init__(self, metadata_name='digitizr'):
         super().__init__()
         self.setupUi(self)
+        self.__init__help()
         self.metadata_name = metadata_name
         self.plugin_name.setText(f'<p>{qgis.utils.pluginMetadata(f"{self.metadata_name}", "name")}</p>')
         font = QFont("MS Shell Dlg 2", 16)
         font.setBold(True)
         self.plugin_name.setFont(font)
         doc = QTextDocument()
-        self.setWindowTitle(self.windowTitle().format(plugin_name=qgis.utils.pluginMetadata(f"{self.metadata_name}", "name")))
+        self.setWindowTitle(
+            self.windowTitle().format(plugin_name=qgis.utils.pluginMetadata(f"{self.metadata_name}", "name")))
         doc.setHtml(self.getAboutText())
-        self.textBrowser.setDocument(doc)
+        doc.setHtml(
+           self.textBrowser.setHtml(self.textBrowser.toHtml().format(description=qgis.utils.pluginMetadata(f"{self.metadata_name}", "description"),
+                                    about=qgis.utils.pluginMetadata(f"{self.metadata_name}", "about"),
+                                    main_url=self.main_url,
+                                    author=qgis.utils.pluginMetadata(f"{self.metadata_name}", "author"))))
         self.textBrowser.setOpenExternalLinks(True)
 
-
-    def reject(self):
-        QDialog.reject(self)
-
-    def openHelp(self):
+    def __init__help(self):
         overrideLocale = QSettings().value('locale/overrideFlag', False, type=bool)
         if not overrideLocale:
             localeFullName = QLocale.system().name()
@@ -37,10 +39,11 @@ class AboutDialog(QDialog, FORM_CLASS):
             localeFullName = QSettings().value('locale/userLocale', '')
 
         localeShortName = localeFullName[0:2]
-        if localeShortName in ['ru', 'uk']:
-            QDesktopServices.openUrl(QUrl('https://nextgis.ru'))
-        else:
-            QDesktopServices.openUrl(QUrl('http://nextgis.com'))
+        self.main_url = 'https://nextgis.ru' if localeShortName in ['ru', 'uk'] else 'http://nextgis.com'
+        # if localeShortName in ['ru', 'uk']:
+        #     QDesktopServices.openUrl(QUrl('https://nextgis.ru'))
+        # else:
+        #     QDesktopServices.openUrl(QUrl('http://nextgis.com'))
 
     def getAboutText(self):
         return self.tr(f'<p>{qgis.utils.pluginMetadata(f"{self.metadata_name}", "description")}</p>'
@@ -55,10 +58,10 @@ class AboutDialog(QDialog, FORM_CLASS):
                        'bugtracker</a></p>'
                        '<p>Links on youtube: '
                        '<p>RU: '
-                       f'<a href="{qgis.utils.pluginMetadata(f"{self.metadata_name}", "youtube_ru")}">' 
-                       f'{qgis.utils.pluginMetadata(f"{self.metadata_name}", "youtube_ru")}</a></p>'
+                       f'<a href="{qgis.utils.pluginMetadata(f"{self.metadata_name}", "video_ru")}">'
+                       f'{qgis.utils.pluginMetadata(f"{self.metadata_name}", "video_ru")}</a></p>'
                        '<p>EN: '
-                       f'<a href="{qgis.utils.pluginMetadata(f"{self.metadata_name}", "youtube_en")}">' 
+                       f'<a href="{qgis.utils.pluginMetadata(f"{self.metadata_name}", "youtube_en")}">'
                        f'{qgis.utils.pluginMetadata(f"{self.metadata_name}", "youtube_en")}</a></p>'
                        '<p>Other helpful services by NextGIS:</p>'
                        '<ul><li><b>Convenient up-to-date data extracts for any place in the world: <a href="https://data.nextgis.com">https://data.nextgis.com</a></b></li>'
