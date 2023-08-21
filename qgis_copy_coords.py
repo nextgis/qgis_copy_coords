@@ -29,7 +29,7 @@ from qgis.core import *
 from PyQt5.QtWidgets import QMessageBox, QAction
 
 from .copy_coordstool import CopyCoordstool
-from . import about_base
+from . import about_dialog_base
 
 # initialize resources (icons) from resources.py
 from . import resources
@@ -88,6 +88,6 @@ class Copy_Coords:
         self.iface.mapCanvas().setMapTool(self.mapTool)
 
     def about(self):
-        dlg = about_base.AboutDialog('copy_coords')
+        dlg = about_dialog_base.AboutDialog('copy_coords')
         dlg.exec_()
 
