@@ -23,13 +23,15 @@
 # MA 02110-1335 USA.
 #
 # ******************************************************************************
+from os import path
 
 from PyQt5.QtGui import *
 from qgis.core import *
 from PyQt5.QtWidgets import QMessageBox, QAction
+from qgis.PyQt.QtCore import QTranslator, QCoreApplication
 
 from .copy_coordstool import CopyCoordstool
-from . import about_dialog_base
+from . import about_dialog
 
 # initialize resources (icons) from resources.py
 from . import resources
@@ -42,7 +44,8 @@ class Copy_Coords:
         # save reference to QGIS interface
         self.iface = iface
         self.qgsVersion = unicode(Qgis.versionInt())
-        self.helpIsActive = False
+        self.plugin_dir = path.dirname(__file__)
+        self.__init_translator()
 
     def initGui(self):
         """Initialize graphic user interface"""
@@ -70,11 +73,34 @@ class Copy_Coords:
         self.mapTool = CopyCoordstool(self.iface)
         # self.iface.mapCanvas().mapToolSet.connect(self.mapToolChanged)
 
+    def __init_translator(self):
+        # initialize locale
+        locale = QgsApplication.instance().locale()
+        self._translator = None
+
+        def add_translator(locale_path):
+            if not path.exists(locale_path):
+                return
+            translator = QTranslator()
+            translator.load(locale_path)
+            QCoreApplication.installTranslator(translator)
+            self._translator = translator  # Should be kept in memory
+
+        add_translator(path.join(
+            self.plugin_dir, 'i18n',
+            'about_base_{}.qm'.format(locale)
+        ))
+        print(path.join(
+            self.plugin_dir, 'i18n',
+            'about_base_{}.qm'.format(locale)))
+
     def unload(self):
         """Actions to run when the plugin is unloaded"""
         # remove menu and icon from the menu
         self.iface.removeToolBarIcon(self.action)
         self.iface.removePluginMenu("Copy_Coords", self.action)
+        self.iface.removeToolBarIcon(self.actionAbout)
+        self.iface.removePluginMenu("Copy_Coords", self.actionAbout)
 
         if self.iface.mapCanvas().mapTool() == self.mapTool:
             self.iface.mapCanvas().unsetMapTool(self.mapTool)
@@ -88,6 +114,5 @@ class Copy_Coords:
         self.iface.mapCanvas().setMapTool(self.mapTool)
 
     def about(self):
-        dlg = about_dialog_base.AboutDialog('copy_coords')
+        dlg = about_dialog.AboutDialog('copy_coords')
         dlg.exec_()
-

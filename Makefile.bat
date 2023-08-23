@@ -1,4 +1,5 @@
-mkdir copy_coords
+mkdir copy_coords\i18n
+xcopy i18n copy_coords\i18n
 xcopy *.py copy_coords
 xcopy *.ui copy_coords
 xcopy README.md copy_coords
