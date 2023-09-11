@@ -23,11 +23,12 @@
 # MA 02110-1335 USA.
 #
 # ******************************************************************************
+import os
 from os import path
 
 from PyQt5.QtGui import *
 from qgis.core import *
-from PyQt5.QtWidgets import QMessageBox, QAction
+from PyQt5.QtWidgets import QAction, QApplication
 from qgis.PyQt.QtCore import QTranslator, QCoreApplication
 
 from .copy_coordstool import CopyCoordstool
@@ -45,6 +46,7 @@ class Copy_Coords:
         self.iface = iface
         self.qgsVersion = unicode(Qgis.versionInt())
         self.plugin_dir = path.dirname(__file__)
+        self._translator = None
         self.__init_translator()
 
     def initGui(self):
@@ -55,8 +57,11 @@ class Copy_Coords:
         self.action.setIcon(QIcon(":/icons/cursor.png"))
         self.action.setWhatsThis("Copy coordinates")
         self.action.setStatusTip("Copy coordinates for pasting somewhere else")
-        self.actionAbout = QAction('About', self.iface.mainWindow())
-        self.actionAbout.setWhatsThis('About Copy Coords')
+        self.actionAbout = QAction(
+            QApplication.translate("CopyCoords", "About"),
+            self.iface.mainWindow()
+        )
+        self.actionAbout.setWhatsThis("About Copy Coords")
 
         # add plugin menu to Vector toolbar
         self.iface.addPluginToMenu("Copy_Coords", self.action)
@@ -71,12 +76,10 @@ class Copy_Coords:
 
         # prepare map tool
         self.mapTool = CopyCoordstool(self.iface)
-        # self.iface.mapCanvas().mapToolSet.connect(self.mapToolChanged)
 
     def __init_translator(self):
         # initialize locale
         locale = QgsApplication.instance().locale()
-        self._translator = None
 
         def add_translator(locale_path):
             if not path.exists(locale_path):
@@ -90,17 +93,15 @@ class Copy_Coords:
             self.plugin_dir, 'i18n',
             'about_base_{}.qm'.format(locale)
         ))
-        print(path.join(
-            self.plugin_dir, 'i18n',
-            'about_base_{}.qm'.format(locale)))
 
     def unload(self):
         """Actions to run when the plugin is unloaded"""
         # remove menu and icon from the menu
         self.iface.removeToolBarIcon(self.action)
         self.iface.removePluginMenu("Copy_Coords", self.action)
-        self.iface.removeToolBarIcon(self.actionAbout)
         self.iface.removePluginMenu("Copy_Coords", self.actionAbout)
+        self.actionAbout.deleteLater()
+        self.action.deleteLater()
 
         if self.iface.mapCanvas().mapTool() == self.mapTool:
             self.iface.mapCanvas().unsetMapTool(self.mapTool)
@@ -114,5 +115,8 @@ class Copy_Coords:
         self.iface.mapCanvas().setMapTool(self.mapTool)
 
     def about(self):
-        dlg = about_dialog.AboutDialog('copy_coords')
+        dlg = about_dialog.AboutDialog(os.path.basename(self.plugin_dir))
         dlg.exec_()
+
+    def tr(self, message):
+        return QCoreApplication.translate('copy_coords', message)

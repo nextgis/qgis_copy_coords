@@ -2,46 +2,55 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ru_RU" sourcelanguage="en_US">
 <context>
-    <name>AboutDialog</name>
+    <name>AboutDialogBase</name>
     <message>
-        <location filename="../about_dialog_base.py" line="60"/>
-        <source>Developers:</source>
-        <translation>Разработчики:</translation>
+        <location filename="../about_dialog_base.ui" line="14"/>
+        <source>About {plugin_name}</source>
+        <translation>О {plugin_name}</translation>
     </message>
     <message>
-        <location filename="../about_dialog_base.py" line="61"/>
-        <source>Homepage:</source>
-        <translation>Домашняя страница:</translation>
+        <location filename="../about_dialog_base.ui" line="27"/>
+        <source>&lt;p align=&quot;center&quot;&gt;{plugin_name}&lt;/p&gt;</source>
+        <translation>&lt;p align=&quot;center&quot;&gt;{plugin_name}&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../about_dialog_base.py" line="62"/>
-        <source>Video with an overview of the plugin:</source>
-        <translation>Видео с обзором плагина:</translation>
+        <location filename="../about_dialog_base.ui" line="40"/>
+        <source>&lt;p&gt;{description}&lt;/p&gt;
+&lt;p&gt;{about}&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Developers:&lt;/b&gt; &lt;a href=&quot;{main_url}&quot;&gt;{authors}&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Homepage:&lt;/b&gt; &lt;a href=&quot;{homepage_url}&quot;&gt;{homepage_url}&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Video with an overview of the plugin:&lt;/b&gt; &lt;a href=&quot;{video_url}&quot;&gt;
+{video_url}&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Please report bugs at&lt;/b&gt; &lt;a href=&quot;{tracker_url}&quot;&gt;bugtracker&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Other helpful services by NextGIS:
+&lt;ul&gt;&lt;li&gt;&lt;b&gt;Convenient up-to-date data extracts for any place in the world:
+&lt;a href=&quot;{main_url}&quot;&gt;{main_url}&lt;/a&gt;&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Fully featured Web GIS service:
+&lt;a href=&quot;{main_url}/nextgis-com/plans&quot;&gt;
+{main_url}/nextgis-com/plans&lt;/a&gt;&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;/p&gt;</source>
+        <translation>&lt;p&gt;{description}&lt;/p&gt;
+&lt;p&gt;{about}&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Разработчики:&lt;/b&gt; &lt;a href=&quot;{main_url}&quot;&gt;{authors}&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Домашняя страница:&lt;/b&gt; &lt;a href=&quot;{homepage_url}&quot;&gt;{homepage_url}&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Видео с обзором плагина:&lt;/b&gt; &lt;a href=&quot;{video_url}&quot;&gt;
+{video_url}&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Пожалуйста, сообщайте о багах на&lt;/b&gt; &lt;a href=&quot;{tracker_url}&quot;&gt;багтрекер&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Другие полезные сервисы NextGIS:
+&lt;ul&gt;&lt;li&gt;&lt;b&gt;Удобная выборка актуальных данных из любой точки мира:
+&lt;a href=&quot;{main_url}&quot;&gt;{main_url}&lt;/a&gt;&lt;/b&gt;&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Полнофункциональный веб-ГИС-сервис:
+&lt;a href=&quot;{main_url}/nextgis-com/plans&quot;&gt;
+{main_url}/nextgis-com/plans&lt;/a&gt;&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;/p&gt;</translation>
     </message>
+</context>
+<context>
+    <name>CopyCoords</name>
     <message>
-        <location filename="../about_dialog_base.py" line="63"/>
-        <source>Please report bugs at</source>
-        <translation>Пожалуйста, сообщайте о багах в</translation>
-    </message>
-    <message>
-        <location filename="../about_dialog_base.py" line="71"/>
-        <source>bugtracker&lt;/a&gt;</source>
-        <translation>багтрекер&lt;/a&gt;</translation>
-    </message>
-    <message>
-        <location filename="../about_dialog_base.py" line="72"/>
-        <source>Other helpful services by NextGIS:</source>
-        <translation>Другие полезные сервисы NextGIS:</translation>
-    </message>
-    <message>
-        <location filename="../about_dialog_base.py" line="73"/>
-        <source>&lt;ul&gt;&lt;li&gt;&lt;b&gt;Convenient up-to-date data extracts for any place in the world: </source>
-        <translation>&lt;ul&gt;&lt;li&gt;&lt;b&gt;Удобная выборка актуальных данных из любой точки мира: </translation>
-    </message>
-    <message>
-        <location filename="../about_dialog_base.py" line="75"/>
-        <source>&lt;li&gt;&lt;b&gt;Fully featured Web GIS service: </source>
-        <translation>&lt;li&gt;&lt;b&gt;Полнофункциональный Web GIS сервис: </translation>
+        <location filename="../qgis_copy_coords.py" line="60"/>
+        <source>About</source>
+        <translation>Информация</translation>
     </message>
 </context>
 </TS>
