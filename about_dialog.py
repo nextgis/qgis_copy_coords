@@ -30,7 +30,7 @@ class AboutDialog(QDialog, FORM_CLASS):
             html = html.replace(key, value)
         self.textBrowser.setHtml(html)
 
-    def __locale(self):
+    def __locale(self) -> str:
         override_locale = QgsSettings().value(
             "locale/overrideFlag", False, type=bool
         )
@@ -45,7 +45,7 @@ class AboutDialog(QDialog, FORM_CLASS):
         locale = self.__locale()
         is_ru = locale in ["ru", "uk"]
 
-        def metadata_value(key: str) -> Optional[str]:
+        def metadata_value(key: str) -> str:
             value = pluginMetadata(self.__package_name, f"{key}[{locale}]")
             if value == '__error__':
                 value = pluginMetadata(self.__package_name, key)
@@ -55,7 +55,7 @@ class AboutDialog(QDialog, FORM_CLASS):
         about_stop_phrase = "Разработан компанией" if is_ru else "Developed by"
         about = about[:about.find(about_stop_phrase)]
 
-        replacements = {
+        return {
             "{plugin_name}": metadata_value("name"),
             "{description}": metadata_value("description"),
             "{about}": about,
@@ -64,9 +64,4 @@ class AboutDialog(QDialog, FORM_CLASS):
             "{homepage_url}": metadata_value("repository"),
             "{tracker_url}": metadata_value("tracker"),
             "{main_url}": f"https://nextgis.{'ru' if is_ru else 'com'}",
-        }
-        return {
-            key: value
-            for key, value in replacements.items()
-            if value is not None
         }

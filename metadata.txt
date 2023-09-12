@@ -5,7 +5,7 @@ description[ru]=Получите координаты точки на карте
 about=Capture coordinates from the map in exactly one click for immediate pasting into a spreadsheet, as simple as it gets. Use SHIFT to copy coordinates in EPSG:4326 (WGS 1984) independently from what your current CRS is. Developed by NextGIS. Any feedback is welcome at https://nextgis.com/contact
 about[ru]=Получите координаты точки на карте для немедленной вставки в электронную таблицу всего за один клик, настолько просто, насколько это возможно. Используйте SHIFT, чтобы скопировать координаты в EPSG:4326 (WGS 1984) независимо от того, каков ваш текущий CRS. Разработан компанией NextGIS. Любая обратная связь приветствуется по адресу https://nextgis.com/contact
 category=Vector
-version=0.2
+version=0.3
 qgisMinimumVersion=3.0
 qgisMaximumVersion=3.99
 
@@ -14,6 +14,9 @@ email=info@nextgis.com
 
 icon=icons/cursor.png
 changelog=
+      0.3
+        * Added about dialog
+        * Added Russian translation
       0.2
         * QGIS 3 port
       0.1

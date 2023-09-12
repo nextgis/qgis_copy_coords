@@ -7,7 +7,9 @@ xcopy README.md copy_coords
 xcopy LICENSE copy_coords
 xcopy metadata.txt copy_coords
 xcopy icons\cursor.png copy_coords\icons\cursor.png
-lrelease copy_coords\i18n\about_base_ru.ts
+xcopy i18n\copy_coords_ru.ts copy_coords\i18n\copy_coords_ru.ts
+lrelease copy_coords\i18n\copy_coords_ru.ts
+del copy_coords\i18n\copy_coords_ru.ts
 zip -r copy_coords.zip copy_coords
-del /Q copy_coords
-rd copy_coords
+del /s /q copy_coords
+rmdir /s /q copy_coords
