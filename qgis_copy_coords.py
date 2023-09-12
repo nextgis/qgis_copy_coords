@@ -26,10 +26,10 @@
 import os
 from os import path
 
-from PyQt5.QtGui import *
-from qgis.core import *
-from PyQt5.QtWidgets import QAction, QApplication
+from qgis.core import QgsApplication
 from qgis.PyQt.QtCore import QTranslator, QCoreApplication
+from qgis.PyQt.QtGui import QIcon
+from qgis.PyQt.QtWidgets import QAction
 
 from .copy_coordstool import CopyCoordstool
 from . import about_dialog
@@ -38,13 +38,12 @@ from . import about_dialog
 from . import resources
 
 
-class Copy_Coords:
+class CopyCoords:
 
     def __init__(self, iface):
         """Initialize class"""
         # save reference to QGIS interface
         self.iface = iface
-        self.qgsVersion = unicode(Qgis.versionInt())
         self.plugin_dir = path.dirname(__file__)
         self._translator = None
         self.__init_translator()
@@ -53,15 +52,15 @@ class Copy_Coords:
         """Initialize graphic user interface"""
 
         # create action that will be run by the plugin
-        self.action = QAction("Copy coordinates", self.iface.mainWindow())
-        self.action.setIcon(QIcon(":/icons/cursor.png"))
-        self.action.setWhatsThis("Copy coordinates")
-        self.action.setStatusTip("Copy coordinates for pasting somewhere else")
-        self.actionAbout = QAction(
-            QApplication.translate("CopyCoords", "About"),
-            self.iface.mainWindow()
+        self.action = QAction(
+            self.tr("Copy coordinates"), self.iface.mainWindow()
         )
-        self.actionAbout.setWhatsThis("About Copy Coords")
+        self.action.setIcon(QIcon(":/icons/cursor.png"))
+        self.action.setWhatsThis(self.tr("Copy coordinates"))
+        self.actionAbout = QAction(
+            self.tr("About plugin…"), self.iface.mainWindow()
+        )
+        self.actionAbout.setWhatsThis(self.tr("About Copy Coords plugin"))
 
         # add plugin menu to Vector toolbar
         self.iface.addPluginToMenu("Copy_Coords", self.action)
@@ -91,7 +90,7 @@ class Copy_Coords:
 
         add_translator(path.join(
             self.plugin_dir, 'i18n',
-            'about_base_{}.qm'.format(locale)
+            'copy_coords_{}.qm'.format(locale)
         ))
 
     def unload(self):
@@ -115,8 +114,8 @@ class Copy_Coords:
         self.iface.mapCanvas().setMapTool(self.mapTool)
 
     def about(self):
-        dlg = about_dialog.AboutDialog(os.path.basename(self.plugin_dir))
-        dlg.exec_()
+        dialog = about_dialog.AboutDialog(os.path.basename(self.plugin_dir))
+        dialog.exec_()
 
     def tr(self, message):
-        return QCoreApplication.translate('copy_coords', message)
+        return QCoreApplication.translate(__class__.__name__, message)

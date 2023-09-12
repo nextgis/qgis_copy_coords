@@ -6,7 +6,7 @@
     <message>
         <location filename="../about_dialog_base.ui" line="14"/>
         <source>About {plugin_name}</source>
-        <translation>О {plugin_name}</translation>
+        <translation>О плагине {plugin_name}</translation>
     </message>
     <message>
         <location filename="../about_dialog_base.ui" line="27"/>
@@ -35,7 +35,7 @@
 &lt;p&gt;&lt;b&gt;Домашняя страница:&lt;/b&gt; &lt;a href=&quot;{homepage_url}&quot;&gt;{homepage_url}&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;b&gt;Видео с обзором плагина:&lt;/b&gt; &lt;a href=&quot;{video_url}&quot;&gt;
 {video_url}&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;b&gt;Пожалуйста, сообщайте о багах на&lt;/b&gt; &lt;a href=&quot;{tracker_url}&quot;&gt;багтрекер&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Пожалуйста, сообщайте о багах в&lt;/b&gt; &lt;a href=&quot;{tracker_url}&quot;&gt;багтрекер&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Другие полезные сервисы NextGIS:
 &lt;ul&gt;&lt;li&gt;&lt;b&gt;Удобная выборка актуальных данных из любой точки мира:
 &lt;a href=&quot;{main_url}&quot;&gt;{main_url}&lt;/a&gt;&lt;/b&gt;&lt;/li&gt;
@@ -48,9 +48,19 @@
 <context>
     <name>CopyCoords</name>
     <message>
+        <location filename="../qgis_copy_coords.py" line="59"/>
+        <source>Copy coordinates</source>
+        <translation>Копировать координаты</translation>
+    </message>
+    <message>
         <location filename="../qgis_copy_coords.py" line="60"/>
-        <source>About</source>
-        <translation>Информация</translation>
+        <source>About plugin…</source>
+        <translation>О плагине…</translation>
+    </message>
+    <message>
+        <location filename="../qgis_copy_coords.py" line="63"/>
+        <source>About Copy Coords plugin</source>
+        <translation>О плагинe Copy Coords</translation>
     </message>
 </context>
 </TS>

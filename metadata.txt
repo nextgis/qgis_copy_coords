@@ -1,9 +1,9 @@
 [general]
 name=Copy_Coords
 description=Capture map coordinates in ONE click to paste them into a spreadsheet
-description_ru=Получите координаты точки на карте всего одним щелчком мыши, чтобы вставить их в электронную таблицу
+description[ru]=Получите координаты точки на карте всего одним щелчком мыши, чтобы вставить их в электронную таблицу
 about=Capture coordinates from the map in exactly one click for immediate pasting into a spreadsheet, as simple as it gets. Use SHIFT to copy coordinates in EPSG:4326 (WGS 1984) independently from what your current CRS is. Developed by NextGIS. Any feedback is welcome at https://nextgis.com/contact
-about_ru=Получите координаты точки на карте для немедленной вставки в электронную таблицу всего за один клик, настолько просто, насколько это возможно. Используйте SHIFT, чтобы скопировать координаты в EPSG:4326 (WGS 1984) независимо от того, каков ваш текущий CRS. Разработан компанией NextGIS. Любая обратная связь приветствуется по адресу https://nextgis.com/contact
+about[ru]=Получите координаты точки на карте для немедленной вставки в электронную таблицу всего за один клик, настолько просто, насколько это возможно. Используйте SHIFT, чтобы скопировать координаты в EPSG:4326 (WGS 1984) независимо от того, каков ваш текущий CRS. Разработан компанией NextGIS. Любая обратная связь приветствуется по адресу https://nextgis.com/contact
 category=Vector
 version=0.2
 qgisMinimumVersion=3.0
@@ -24,8 +24,8 @@ tags=coords,copy coords
 homepage=https://nextgis.com
 tracker=https://github.com/nextgis/qgis_copy_coords/issues
 repository=https://github.com/nextgis/qgis_copy_coords
-video_ru=https://youtu.be/74mxkqoHXIw
 video=https://youtu.be/ISH2bB6quB4
+video[ru]=https://youtu.be/74mxkqoHXIw
 
 experimental=False
 deprecated=False
