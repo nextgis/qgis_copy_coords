@@ -39,7 +39,6 @@ from . import resources
 
 
 class CopyCoords:
-
     def __init__(self, iface):
         """Initialize class"""
         # save reference to QGIS interface
@@ -88,10 +87,11 @@ class CopyCoords:
             QCoreApplication.installTranslator(translator)
             self._translator = translator  # Should be kept in memory
 
-        add_translator(path.join(
-            self.plugin_dir, 'i18n',
-            'copy_coords_{}.qm'.format(locale)
-        ))
+        add_translator(
+            path.join(
+                self.plugin_dir, "i18n", "copy_coords_{}.qm".format(locale)
+            )
+        )
 
     def unload(self):
         """Actions to run when the plugin is unloaded"""

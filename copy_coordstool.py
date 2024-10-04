@@ -50,7 +50,7 @@ class CopyCoordstool(QgsMapTool):
 
     def canvasReleaseEvent(self, event):
         crsSrc = self.canvas.mapSettings().destinationCrs()
-        crsWGS = QgsCoordinateReferenceSystem('EPSG:4326')
+        crsWGS = QgsCoordinateReferenceSystem("EPSG:4326")
 
         QApplication.setOverrideCursor(Qt.WaitCursor)
         x = event.pos().x()
@@ -59,7 +59,9 @@ class CopyCoordstool(QgsMapTool):
         # If Shift is pressed, convert coords to EPSG:4326
         if event.modifiers() == Qt.ShiftModifier:
             f = QgsGeometry.fromPointXY(QgsPointXY(point.x(), point.y()))
-            xform = QgsCoordinateTransform(crsSrc, crsWGS, QgsProject.instance())
+            xform = QgsCoordinateTransform(
+                crsSrc, crsWGS, QgsProject.instance()
+            )
             f.transform(xform)
             point = f.asPoint()
         QApplication.restoreOverrideCursor()
@@ -69,4 +71,4 @@ class CopyCoordstool(QgsMapTool):
 
         # QMessageBox.warning(self.iface.mainWindow(), 'Coordinates of a mouse click', f'{xx}\t{yy}')
         clipboard = QApplication.clipboard()
-        clipboard.setText(f'{xx}\t{yy}')
+        clipboard.setText(f"{xx}\t{yy}")
