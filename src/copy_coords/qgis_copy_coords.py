@@ -115,7 +115,7 @@ class CopyCoords:
 
     def about(self):
         dialog = about_dialog.AboutDialog(os.path.basename(self.plugin_dir))
-        dialog.exec_()
+        dialog.exec()
 
     def tr(self, message):
         return QCoreApplication.translate(__class__.__name__, message)
