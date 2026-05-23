@@ -6,7 +6,13 @@ from qgis.core import QgsSettings
 from qgis.PyQt import uic
 from qgis.PyQt.QtCore import QFile, QLocale, QSize, Qt, QUrl
 from qgis.PyQt.QtGui import QDesktopServices, QIcon, QPixmap
-from qgis.PyQt.QtSvg import QSvgWidget
+try:
+    from qgis.PyQt.QtSvg import QSvgWidget
+except ImportError:
+    # in QGIS 4.0.2 this will not work...
+    # qgis.PyQt.QtSvgWidgets import QSvgWidget
+    # so we import directly from PyQt6
+    from PyQt6.QtSvgWidgets import QSvgWidget
 from qgis.PyQt.QtWidgets import QDialog, QLabel, QWidget
 from qgis.utils import pluginMetadata
 
@@ -192,7 +198,8 @@ class AboutDialog(QDialog, Ui_AboutDialogBase):
         package_name = self.__package_name.replace("qgis_", "")
 
         main_url = f"https://nextgis.{'ru' if speaks_russian else 'com'}"
-        utm = f"utm_source=qgis_plugin&utm_medium=about&utm_campaign=constant&utm_term={package_name}&utm_content={locale}"
+        utm = f"utm_source=qgis_plugin&utm_medium=about&utm_campaign=constant&utm_term={package_name} &utm_content={
+            locale} "
 
         return {
             "plugin_name": metadata_value("name"),

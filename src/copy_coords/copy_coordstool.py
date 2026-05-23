@@ -54,12 +54,12 @@ class CopyCoordstool(QgsMapTool):
         crsSrc = self.canvas.mapSettings().destinationCrs()
         crsWGS = QgsCoordinateReferenceSystem("EPSG:4326")
 
-        QApplication.setOverrideCursor(Qt.WaitCursor)
+        QApplication.setOverrideCursor(Qt.CursorShape.WaitCursor)
         x = event.pos().x()
         y = event.pos().y()
         point = self.canvas.getCoordinateTransform().toMapCoordinates(x, y)
         # If Shift is pressed, convert coords to EPSG:4326
-        if event.modifiers() == Qt.ShiftModifier:
+        if event.modifiers() == Qt.KeyboardModifier.ShiftModifier:
             f = QgsGeometry.fromPointXY(QgsPointXY(point.x(), point.y()))
             xform = QgsCoordinateTransform(
                 crsSrc, crsWGS, QgsProject.instance()
